@@ -1,0 +1,114 @@
+
+MongoDB:
+MongoDB is a source-available cross-platform document-oriented database program. Classified as a NoSQL 
+database program, MongoDB uses JSON-like documents with optional schemas. MongoDB is developed by 
+MongoDB Inc. and licensed under the Server-Side Public License (SSPL) which is deemed non-free by several 
+distributions.
+
+CouchDB:
+Apache CouchDB is an open-source document-oriented NoSQL database, implemented in Erlang. CouchDB uses 
+multiple formats and protocols to store, transfer, and process its data. It uses JSON to store data, JavaScript as its 
+query language using MapReduce, and HTTP for an API. CouchDB was first released in 2005 and later became an 
+Apache Software Foundation project in 2008. Unlike a relational database, a CouchDB database does not store data 
+and relationships in tables. Instead, each database is a collection of independent documents. Each document 
+maintains its own data and self-contained schema. An application may access multiple databases, such as one 
+stored on a user's mobile phone and another on a server. Document metadata contains revision information, making 
+it possible to merge any differences that may have occurred while the databases were disconnected.
+
+Apache Cassandra:
+Cassandra is a free and open-source, distributed, wide-column store, NoSQL database management system 
+designed to handle large amounts of data across many commodity servers, providing high availability with no 
+single point of failure. Cassandra offers support for clusters spanning multiple datacenters, with asynchronous 
+masterless replication allowing low latency operations for all clients. Cassandra was designed to implement a 
+combination of Amazon's Dynamo distributed storage and replication techniques combined with Google's Bigtable 
+data and storage engine model.
+
+Indexing:
+Indexing is used to optimize the performance of a database by minimizing the number of disk accesses required 
+when a query is processed. The index is a type of data structure. It is used to locate and access the data in a 
+database table quickly.
+
+Sorting in SQL:
+Sorting helps to sort the records that are retrieved. By default, it displays the records in ascending order of primary 
+key. If we need to sort it based on different columns, then we need to specify it in ORDER BY clause. If we need 
+to order by descending order, then DESC keyword must be added after the column list.
+
+Sorting in MongoDB:
+To sort documents in MongoDB, you need to use the sort () method. The method accepts a document containing a 
+list of fields along with their sorting order. To specify sorting order 1 and -1 are used. 1 is used for ascending order 
+while -1 is used for descending order.
+
+Code/Output:
+1. MongoDB
+Command to create a Database
+---->use StudentData
+
+Command to create a Collection
+---->db.createCollection("Student")
+
+Command to view Collection
+---->show collections
+
+Command to insert a single document in Collection
+---->db.Student.insertOne({"name":"Raj","Roll_no":1,"Class":"MSc_CS","Address":"Mumbai"})
+
+Command to insert multiple documents in Collection
+----
+>db.Student.insertMany([{"name":"Rajat","Roll_no":2,"Class":"MSc_CS","Address":"Kalyan"},{"name":"Manish
+","Roll_no":3,"Class":"MSc_CS","Address":"Thane"},{"name":"Rahul","Roll_no":4,"Class":"MSc_IT","Address"
+:"Kalyan"},{"name":"Mohit","Roll_no":5,"Class":"MSc_IT","Address":"Thane"},{"name":"Karan","Roll_no":6,"
+Class":"MSc_IT","Address":"Pune"}])
+
+Command to view all documents
+---->db.Student.find()
+
+Command to Create Index
+---->db.Student.createIndex({"Roll_no":1});
+
+Command to view all indexes in collection
+---->db.Student.getIndexes();
+
+Command to Drop Index
+---->db.Student.dropIndex({"Roll_no":1});
+
+Before Sorting/Ordering
+Command to order data in ascending order
+---->db.Student.find({},{"name":1,"Roll_no":1,_id:0}).sort({"Roll_no":1});
+
+Command to order data in descending order
+---->db.Student.find({},{"name":1,"Roll_no":1,_id:0}).sort({"Roll_no":-1});
+
+2. CouchDB
+3. Apache Cassandra
+Command to create keyspace
+---->CREATE KEYSPACE studentDB WITH replication = {'class':'SimpleStrategy', 'replication_factor' : 1};
+
+Command to use keyspace
+---->use studentDB;
+
+Command to create table
+---->CREATE TABLE student(
+ s_id int PRIMARY KEY,
+ s_name text,
+ s_city text,
+ s_class text
+ );
+ 
+Command to insert data
+---->INSERT INTO student (s_id,s_name,s_city,s_class)VALUES(1,'Raj', 'Mumbai', 'MSc_CS');
+---->INSERT INTO student (s_id,s_name,s_city,s_class)VALUES(2,'Mohit', 'Thane', 'MSc_IT');
+---->INSERT INTO student (s_id,s_name,s_city,s_class)VALUES(3,'Mohan', 'Kalyan', 'MSc_CS');
+---->INSERT INTO student (s_id,s_name,s_city,s_class)VALUES(4,'Sandeep', 'Pune', 'MSc_CS');
+---->INSERT INTO student (s_id,s_name,s_city,s_class)VALUES(5,'Suraj', 'Mumbai', 'MSc_IT');
+
+Command to read data
+---->SELECT * FROM student;
+
+Command to create index
+---->Create index ClassIndex on student(s_class);
+
+Command to view filtered data
+---->SELECT * FROM student WHERE s_class = 'MSc_CS';
+
+Command to delete index
+---->DROP INDEX IF EXISTS studentDB.ClassIndex;

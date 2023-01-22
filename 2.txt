@@ -1,0 +1,23 @@
+#Spatial Data:
+Spatial data is associated with geographic locations such as cities,towns etc. 
+A spatial database is optimized to store and query data representing objects. 
+These are the objects which are defined in a geometric space.
+
+#Characteristics of Spatial Database
+A spatial database system has the following characteristics
+
+It is a database system
+It offers spatial data types (SDTs) in its data model and query language.
+It supports spatial data types in its implementation, providing at least spatial indexing and efficient algorithms for spatial join.
+Example
+A road map is a visualization of geographic information. 
+A road map is a 2-dimensional object which contains points, lines, 
+and polygons that can represent cities, roads, and political boundaries such as states or provinces. 
+
+In general, spatial data can be of two types −
+
+Vector data: This data is represented as discrete points, lines and polygons
+Rastor data: This data is represented as a matrix of square cells.
+
+
+The spatial data in the form of points, lines, polygons etc. is used by many different databases as shown above.

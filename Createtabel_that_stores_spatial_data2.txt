@@ -1,0 +1,51 @@
+
+Spatial Database:
+A spatial database is a general-purpose database (usually a relational database) that has been enhanced to include 
+spatial data that represents objects defined in a geometric space, along with tools for querying and analyzing such 
+data. Most spatial databases allow the representation of simple geometric objects such as points, lines and 
+polygons. Some spatial databases handle more complex structures such as 3D objects, topological coverages, linear 
+networks, and triangulated irregular networks (TINs). While typical databases have been developed to manage 
+various numeric and character types of data, such databases require additional functionality to process spatial data 
+types efficiently, and developers have often added geometry or feature data types. The Open Geospatial 
+Consortium (OGC) developed the Simple Features specification (first released in 1997)[1] and sets standards for 
+adding spatial functionality to database systems.[2] The SQL/MM Spatial ISO/IEC standard is a part the SQL/MM 
+multimedia standard and extends the Simple Features standard with data types that support circular 
+interpolations.[3] Almost all current relational and object-relational database management systems now have 
+spatial extensions, and some GIS software vendors have developed their own spatial extensions to database 
+management systems.
+
+Code/Output:
+Command to create database:
+---->use SpatialData
+
+Command to insert data:
+---->db.dealerships.insert({"name":"Frank's Fords", "affiliation":"Ford", "loc":{"lon":51.10682735591432,"lat":-
+114.11773681640625}})
+---->db.dealerships.insert({"name":"Steve's Suzukis", "affiliation":"Suzuki", 
+"loc":{"lon":51.09144802136697,"lat":-114.11773681640625}})
+---->db.dealerships.insert({"name":"Charlie's Chevrolets", "affiliation":"Chevrolet", 
+"loc":{"lon":51.08282186160978,"lat":-114.10400390625}})
+---->db.dealerships.insert({"name":"Nick's Nissans", "affiliation":"Nissan", 
+"loc":{"lon":51.12076493195686,"lat":-113.98040771484375}})
+---->db.dealerships.insert({"name":"Tom's Toyotas", "affiliation":"Toyota", 
+"loc":{"lon":50.93939251390387,"lat":-113.98040771484375}})
+
+Command to create index on loc field:
+---->db.dealerships.createIndex({loc:"2d"})
+
+Command to get two dealerships closest to a specific co-ordinate:
+---->db.dealerships.find({loc: {$near:[51,-114]}}).limit(2)
+
+Command to create compound index (On multiple fields):
+---->db.dealerships.createIndex({loc:"2d", affiliation:1})
+
+Command to filter data by dealership affiliation:
+---->db.dealerships.find({loc: {$near:[51,-114]}, "affiliation":"Ford"})
+
+Command to define a polygon for a specific area of town:
+---->areaoftown = { a : { x : 51.12335082548444, y : -114.19052124023438 }, b : { x : 51.11904092252057, y : -
+114.05593872070312 }, c : { x : 51.02325750523972, y : -114.02435302734375 }, d : { x : 51.01634653617311, y 
+: -114.1644287109375 } }
+
+Command to search for all dealerships within a given area of town:
+---->db.dealerships.find({ "loc" : { "$within" : { "$polygon" : areaoftown } } })

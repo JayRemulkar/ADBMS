@@ -1,0 +1,74 @@
+
+MongoDB:
+MongoDB is a source-available cross-platform document-oriented database program. Classified as a NoSQL 
+database program, MongoDB uses JSON-like documents with optional schemas. MongoDB is developed by 
+MongoDB Inc. and licensed under the Server-Side Public License (SSPL) which is deemed non-free by several 
+distributions.
+
+Redis:
+Redis is an in-memory data structure store, used as a distributed, in-memory key–value database, cache and 
+message broker, with optional durability. Redis supports different kinds of abstract data structures, such as strings, 
+lists, maps, sets, sorted sets, Hyper Loglogs, bitmaps, streams, and spatial indices. The project was developed and 
+maintained by Salvatore Sanfilippo, starting in 2009. From 2015 until 2020, he led a project core team sponsored 
+by Redis Labs. Salvatore Sanfilippo left Redis as the maintainer in 2020. It is open-source software released under 
+a BSD 3-clause license. In 2021, not long after the original author and main maintainer left, Redis Labs dropped 
+the Labs from its name and now is known simply as "Redis".
+
+Create Operation:
+The create or insert operations are used to insert or add new documents in the collection. If a collection does not 
+exist, then it will create a new collection in the database.
+
+Read Operation:
+The Read operations are used to retrieve documents from the collection, or in other words, read operations are used 
+to query a collection for a document.
+
+Update Operation:
+The update operations are used to update or modify the existing document in the collection. 
+
+Delete Operation:
+The delete operation is used to delete or remove documents from a collection.
+
+Code/Output:
+1. MongoDB
+Command to create a Database
+---->use StudentData
+
+Command to create a Collection
+---->db.createCollection("Student")
+
+Command to view Collection
+---->show collections
+
+Command to insert a single document in Collection
+---->db.Student.insertOne({"name":"Raj","Roll_no":1,"Class":"MSc_CS","Address":"Mumbai"})
+
+Command to insert multiple documents in Collection
+----
+>db.Student.insertMany([{"name":"Rajat","Roll_no":2,"Class":"MSc_CS","Address":"Kalyan"},{"name":"Manish
+","Roll_no":3,"Class":"MSc_CS","Address":"Thane"},{"name":"Rahul","Roll_no":4,"Class":"MSc_IT","Address"
+:"Kalyan"},{"name":"Mohit","Roll_no":5,"Class":"MSc_IT","Address":"Thane"},{"name":"Karan","Roll_no":6,"
+Class":"MSc_IT","Address":"Pune"}])
+
+Command to view a single document(First document)
+---->db.Student.findOne()
+
+Command to view all documents
+---->db.Student.find()
+
+Command to view documents with pretty()
+---->db.Student.find().pretty()
+
+Command to update a single document
+---->db.Student.updateOne({"name":"Karan"},{$set:{"address":"Mumbai"}})
+
+Command to update many documents which satisfies the conditon
+---->db.Student.updateMany({"Class":"MSc_IT"},{$set:{"Class":"MSc_CS"}})
+
+Command to delete a single document from collection
+---->db.Student.deleteOne({"name":"Mohit"})
+
+Command to delete multiple documents from collection
+---->db.Student.deleteMany({"Address":"Mumbai"})
+
+Command to drop a collection
+---->db.Student.drop()
